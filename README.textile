@@ -1,0 +1,15 @@
+h1. Compressor
+
+h3. O que é?
+
+O Compressor é um script em PHP que comprime arquivos CSS e Javascript de forma que acelere seu carregamento.
+
+h3. Modo de usar
+
+O codigo abaixo mostra como podemos chamar o compressor para minimizar um arquivo.
+
+bc. compressor.php?a=caminho/do/arquivo.css
+
+Também é possivel utilizar o compressor para fazer download do arquivo comprimido. Para isso basta fazer a chamada adicionando um parametro 'download' como mostrado abaixo:
+
+bc. compressor.php?a=caminho/do/arquivo.css&download

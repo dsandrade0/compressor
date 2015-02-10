@@ -1,11 +1,17 @@
 <?php
-
 /**
  * Compressor - Script php para comprimir arquivos JS e CSS
- * @autor Diego Andrade
+ * @autor Diego Andrade (didi.ufs@gmail.com)
+ * 
+ * ------------Modo de usar -------
+ * compressor.php?a=caminho/do/arquivo.css (comprime o arquivo e imprime)
+ * compressor.php?a=caminho/do/arquivo.css&download (força o download do arquivo)
+ * @require PHP5+
  */
 
-$arquivo = $_GET['f'];
+$versão = '1.1 beta';
+
+$arquivo = $_GET['a'];
 $download = isset($_GET['download']) ? true : false;
 
 $tipos_conteudo = array('css' => 'text/css', 'js' => 'text/javascript');
@@ -15,9 +21,9 @@ function compressor($arquivo, $tipo_conteudo = 'js') {
   // remove comentarios de blocos
   $conteudo_arq = preg_replace('#/\*.*?\*/#s', '', $conteudo_arq);
   // remove espaços em branco
-  $conteudo_arq = preg_replace('#\s+#', '', $conteudo_arq);
+  $conteudo_arq = preg_replace('#\s+#', ' ', $conteudo_arq);
   // remove comentarios de linha
-  $conteudo_arq = preg_replace('#//(.*)#', '', $conteudo_arq);
+  $conteudo_arq = preg_replace('#//(.*)$#m', '', $conteudo_arq);
 
   //removendo espaços desnecessários
   $conteudo_arq = str_replace(array(' {', '{ '), '{', $conteudo_arq);
@@ -28,19 +34,18 @@ function compressor($arquivo, $tipo_conteudo = 'js') {
   $conteudo_arq = str_replace(array(' :', ': '), ':', $conteudo_arq);
   $conteudo_arq = str_replace(array(' ,', ', '), ',', $conteudo_arq);
   $conteudo_arq = str_replace(array('( ', ' ('), '(', $conteudo_arq);
-  $conteudo_arq = str_replace(array(') ', ' )'), ')', $conteudo_arq);
+  $conteudo_arq = str_replace(array(' )'), ')', $conteudo_arq);
   $conteudo_arq = str_replace(array('= ', ' ='), '=', $conteudo_arq);
+  $conteudo_arq = str_replace(array('* ', ' *'), '*', $conteudo_arq);
 
   if ($tipo_conteudo === 'js') {
     $conteudo_arq = str_replace(array('+ ', ' +'), '+', $conteudo_arq);
     $conteudo_arq = str_replace(array('+= ', ' +='), '+=', $conteudo_arq);
     $conteudo_arq = str_replace(array('-= ', ' -='), '-=', $conteudo_arq);
     $conteudo_arq = str_replace(array('- ', ' -'), '-', $conteudo_arq);
-    $conteudo_arq = str_replace(array('* ', ' *'), '*', $conteudo_arq);
     $conteudo_arq = str_replace(array('/ ', ' /'), '/', $conteudo_arq);
   }
-
-  return $conteudo_arq;
+  return trim($conteudo_arq);
 }
 
 $info = pathinfo($arquivo);
