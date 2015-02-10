@@ -19,10 +19,10 @@ $tipos_conteudo = array('css' => 'text/css', 'js' => 'text/javascript');
 function compressor($arquivo, $tipo_conteudo = 'js') {
   $conteudo_arq = @file_get_contents($arquivo);
   
-  // remove comentarios de linha
-  $conteudo_arq = preg_replace('#//(.*)#m', '', $conteudo_arq);
   // remove comentarios de blocos
   $conteudo_arq = preg_replace('#/\*.*?\*/#s', '', $conteudo_arq);
+  // remove comentarios de linha
+  $conteudo_arq = preg_replace('#//(\s*\w+.*)$#m', '', $conteudo_arq);
   // remove espaços em branco
   $conteudo_arq = preg_replace('#\s+#', ' ', $conteudo_arq);
 
