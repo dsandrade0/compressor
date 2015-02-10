@@ -4,14 +4,14 @@
  * @autor Diego Andrade (didi.ufs@gmail.com)
  * 
  * ------------Modo de usar -------
- * compressor.php?a=caminho/do/arquivo.css (comprime o arquivo e imprime)
- * compressor.php?a=caminho/do/arquivo.css&download (força o download do arquivo)
+ * compressor.php?__a=caminho/do/arquivo.css (comprime o arquivo e imprime)
+ * compressor.php?__a=caminho/do/arquivo.css&download (força o download do arquivo)
  * @require PHP5+
  */
 
 $versão = '1.1 beta';
 
-$arquivo = $_GET['a'];
+$arquivo = $_GET['__a'];
 $download = isset($_GET['download']) ? true : false;
 
 $tipos_conteudo = array('css' => 'text/css', 'js' => 'text/javascript');
