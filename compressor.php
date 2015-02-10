@@ -38,7 +38,6 @@ function compressor($arquivo, $tipo_conteudo = 'js') {
   $conteudo_arq = str_replace(array(' )', ') '), ')', $conteudo_arq);
   $conteudo_arq = str_replace(array('= ', ' ='), '=', $conteudo_arq);
   $conteudo_arq = str_replace(array('* ', ' *'), '*', $conteudo_arq);
-  echo $conteudo_arq;
 
   if ($tipo_conteudo === 'js') {
     $conteudo_arq = str_replace(array('+ ', ' +'), '+', $conteudo_arq);
@@ -60,4 +59,4 @@ if ($download) {
   header("Content-disposition: attachment; filename=compressor.{$info['extension']}");
 }
 
-compressor($arquivo, $info['extension']);
+echo compressor($arquivo, $info['extension']);
