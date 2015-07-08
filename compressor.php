@@ -11,7 +11,8 @@
 
 $versão = '1.2 beta';
 
-$arquivo = $_GET['__a'];
+$arquivo = (isset($_GET['__a'])) ? $_GET['__a'] : null;
+
 $download = isset($_GET['download']) ? true : false;
 
 $tipos_conteudo = array('css' => 'text/css', 'js' => 'text/javascript');
@@ -52,14 +53,19 @@ function compressor($arquivo, $tipo_conteudo = 'js') {
   return trim($conteudo_arq);
 }
 
-$info = pathinfo($arquivo);
-$tipo_conteudo = $tipos_conteudo[$info['extension']];
+if (isset($arquivo)) {
+    
+  $info = pathinfo($arquivo);
+  $tipo_conteudo = $tipos_conteudo[$info['extension']];
 
-header('Cache-Control: public');
-header("Content-type: {$tipo_conteudo}; charset=utf-8");
+  header('Cache-Control: public');
+  header("Content-type: {$tipo_conteudo}; charset=utf-8");
 
-if ($download) {
-  header("Content-disposition: attachment; filename=compressor.{$info['extension']}");
+  if ($download) {
+    header("Content-disposition: attachment; filename=compressor.{$info['extension']}");
+  }
+
+  echo compressor($arquivo, $info['extension']);
+} else {
+  echo '';
 }
-
-echo compressor($arquivo, $info['extension']);
