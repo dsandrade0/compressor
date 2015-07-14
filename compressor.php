@@ -2,6 +2,7 @@
 /**
  * Compressor - Script php para comprimir arquivos JS e CSS
  * @autor Diego Andrade (didi.ufs@gmail.com)
+ *
  * 
  * ------------Modo de usar -------
  * compressor.php?__a=caminho/do/arquivo.css (comprime o arquivo e imprime)
