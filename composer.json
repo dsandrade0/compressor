@@ -1,0 +1,14 @@
+{
+    "name": "didijudo/compressor",
+    "description": "Um simples compressor de CSS e JS para usar em seus projetos",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Diego Andrade",
+            "email": "didi.ufs@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}
