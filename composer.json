@@ -11,5 +11,5 @@
     "require": {
       "php": ">=5.2"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "stable"
 }
