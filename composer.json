@@ -8,7 +8,6 @@
             "email": "didi.ufs@gmail.com"
         }
     ],
-    "minimum-stability": "alpha",
     "require": {
       "php": ">=5.2"
     }
